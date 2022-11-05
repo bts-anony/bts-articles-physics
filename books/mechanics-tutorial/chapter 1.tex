@@ -1,0 +1,716 @@
+\documentclass{ctexart}
+
+\usepackage{amsmath}
+\numberwithin{equation}{subsection}
+\newtheorem{theorem}    {定理}
+\numberwithin{theorem}{subsection}
+\newtheorem{definition} {定义}
+\numberwithin{definition}{subsection}
+\newtheorem{proof}      {证明}
+\numberwithin{proof}{subsection}
+\newtheorem{lemma}      {引理}
+\numberwithin{lemma}{subsection}
+\newtheorem{example}    {例子}
+\numberwithin{example}{subsection}
+\newtheorem{remark}     {备注}
+\numberwithin{remark}{subsection}
+\newtheorem{corollary}  {推论}
+\numberwithin{corollary}{subsection}
+\newtheorem{exercise}   {练习}
+\numberwithin{exercise}{subsection}
+\newtheorem{problem}    {问题}
+\numberwithin{problem}{subsection}
+\newtheorem{question}   {习题}
+\numberwithin{question}{section}
+\newtheorem{method}     {方法}
+\numberwithin{method}{subsection}
+\usepackage{amssymb}
+
+
+\begin{document}
+    \section{运动学}
+
+    \subsection{坐标系}
+    
+
+    牛顿的力学理论中, 运动学是依附于我们的三维世界的, 所以对物体运动的描述
+    也是基于三维空间的。但是如何让这空间中的概念变得可计算呢, 我们需要把空
+    间中的点转化成数这类我们能计算的对象, 坐标系就由此诞生。
+
+    \begin{definition}
+        \label{1.1 def:coordinate system}
+        (坐标系) 坐标系是一个映射, 它将我们考虑的物理体系的各种参数映射到
+        一个另一个 (数学) 空间中, 常常是实数或复数数组。
+    \end{definition}
+
+    对于一个在三维空间的点, 我们也可以建立一个坐标系来描述它。由于我们所考
+    虑的三维空间是平的, 在确定原点后构成了一个自然的线性空间, 依照这个线性
+    空间, 我们能够定义三维直角坐标系。
+
+    \begin{definition}
+        \label{1.1 def:cartesian coordinate system}
+        (三维直角坐标系) 直角坐标系是一个坐标系, 它通过一个原点, 三个长度
+        为1, 两两垂直的矢量所确定, 原点记作O, 三个基矢量分别记作
+        \(\vec{e_1}\), \(\vec{e_2}\), \(\vec{e_3}\)。于是, 一个平
+        滑的三维空间中每个点的矢径\(\vec{r}\)都可以写作
+        \(x^1 \vec{e_1} + x^2 \vec{e_2} + x^3 \vec{e_3}\), 于是
+        一个从三维空间中的点, 就可以用三个数\((x^1,x^2,x^3)\)表示。在
+        确保是右手系后, 也常用\(x,y,z\)表示\(x^1,x^2,x^3\); 
+        \(\vec{i},\vec{j},\vec{k}\)表示
+        \(\vec{e_1},\vec{e_2},\vec{e_3}\)。
+    \end{definition}
+
+    除了三维直角坐标系, 为了处理一些常用的对称性, 也有其他坐标系, 比如球坐
+    标系, 柱坐标系, 椭球坐标等等。
+
+    \begin{example}
+        \label{1.1 ex:spherical coordinate frame}
+        (球坐标系) 球坐标系是一个坐标系, 我们建立它与三维直角坐标系的一个
+        对应关系 (球坐标系用R, \(\theta\), \(\phi\)表示) 。
+        \begin{equation}
+            \begin{cases}                
+                R &= \sqrt{x^2+y^2+z^2} \\
+                \theta &= \arccos\frac{z}{\sqrt{x^2 + y^2 + z^2}} \\
+                \phi &= \arctan\frac{y}{x}
+            \end{cases}
+        \end{equation}
+        \begin{equation}
+            \begin{cases}
+                x &= R \sin\theta \cos\phi \\
+                y &= R \sin\theta \sin\phi \\
+                z &= R \cos\theta
+            \end{cases}
+        \end{equation}
+    \end{example}
+
+    \begin{example}
+        \label{1.1 ex:cylindrical coordinate frame}
+        (柱坐标系) 柱坐标系是一个坐标系, 用R, z, \(\phi\)表示。
+        \begin{equation}
+            \begin{cases}
+                R &= \sqrt{x^2+y^2} \\
+                z &= z \\
+                \phi &= \arctan\frac{y}{x}
+            \end{cases}
+        \end{equation}
+        \begin{equation}
+            \begin{cases}
+                x &= R \cos\phi \\
+                y &= R \sin\phi \\
+                z &= z
+            \end{cases}
+        \end{equation}
+    \end{example}
+
+    \begin{example}
+        \label{1.1 ex:ellipsoidal coordinates frame}
+        (椭球坐标系) 椭球坐标系是一个坐标系, 需要参数a,b,c, 用
+        \(\xi_1, \xi_2, \xi_3\)表示。
+        
+        考察方程:
+        \begin{equation}
+            \begin{cases}
+                \frac{x^2}{a^2 + \xi} + \frac{y^2}{b^2 + \xi} + \frac{z^2}{c^2 + \xi} = 1
+            \end{cases}
+        \end{equation}
+
+        \(\xi_1,\xi_2,\xi_3\)分别是上述方程的三个根。
+    \end{example}
+
+    \begin{exercise}
+        \label{1.1.1}
+        计算三维直角坐标系中的一条以原点为焦点的圆锥曲线在球坐
+        标系中的表达式。
+    \end{exercise}
+    \begin{exercise}
+        \label{1.1.2}
+        计算椭球坐标系中一点在三维直角坐标系中的坐标。
+    \end{exercise}
+
+    有的时候坐标系会随时间变化, 这个时候我们坐标系与三维直角坐
+    标系的对应关系就会包含时间。这让我们想到是否能将时间纳入我
+    们的坐标系中 (此时, 我们的物理体系就包含了时间) 。
+
+    \begin{definition}
+        \label{1.1 def:Galileo frame}
+        (伽利略坐标系) 伽利略坐标
+        系是一个坐标系, 包含着一个时空原点, 坐标包含t(时间), 
+        x, y, z (空间坐标)。
+    \end{definition}
+
+    我们来考虑一些随时间变化的坐标系(相对于伽利略坐标系)。
+
+    \begin{example}
+        \label{1.1 ex:moving frame}
+        (运动坐标系) 运动坐标系是一个坐标系, 它的三维直角坐标
+        系的原点随时间变化, 用\(x_0(t), y_0(t), z_0(t)\)
+        表示, 于是有:
+        \begin{equation}
+            \begin{cases}
+                x ^ \prime &= x - x_0(t) \\
+                y ^ \prime &= y - y_0(t) \\
+                z ^ \prime &= z - z_0(t) \\
+                t ^ \prime &= t
+            \end{cases}
+        \end{equation}
+        \begin{equation}
+            \begin{cases}
+                x &= x_0(t) + x ^ \prime \\
+                y &= y_0(t) + y ^ \prime \\
+                z &= z_0(t) + z ^ \prime \\
+                t &= t ^ \prime
+            \end{cases}
+        \end{equation}
+    \end{example}
+    \footnote{时间的变换之后将略去。}
+
+    \begin{example}
+        \label{1.1 ex:rotating frame}
+        (旋转坐标系) 旋转坐标系是一个坐标系, 它的三维直角坐标系
+        的基矢量随时间变化 (旋转) , 以绕z轴旋转为例。
+        \begin{equation}
+            \begin{cases}
+                x ^ \prime &= x \cos\omega t - y \sin\omega t \\
+                y ^ \prime &= x \sin\omega t + y \cos\omega t \\
+                z ^ \prime &= z
+            \end{cases}
+        \end{equation}
+        \begin{equation}
+            \begin{cases}
+                x &= x ^ \prime \cos\omega t + y ^ \prime \sin\omega t \\
+                y &= -x ^ \prime \sin\omega t + y ^ \prime \cos\omega t \\
+                z &= z ^ \prime
+            \end{cases}
+        \end{equation}
+    \end{example}
+
+    \subsection{点的移动}
+
+    运动学的对象是在运动的物体, 物体在坐标系中运动构成一个四维
+    曲线。为了描述曲线, 我们需要一个和曲线上一个点一一对应的参
+    量\(\tau\), 称作运动参数, 我们可以借此来表述空间曲线。
+
+    \begin{definition}
+        \label{1.2 def:curve}
+        (曲线) 曲线是一个映射, 它的自变量是运动参数\(\tau\),
+        它的值是空间中一个点的坐标, 用\(f_i(\tau)\)表示。
+        \(f_i\)是坐标。
+    \end{definition}
+
+    不难发现, 若存在一个只和\(\tau\)有关的函数
+    \(\tau^\prime (\tau)\)存在, 那么\(\tau^\prime\)也是
+    一个运动参数。
+
+    在我们朴素的认知中, 时间一去不复返, 所以自然的, 对上述所
+    有给出具体实现的坐标, 用时间t作为运动参数是最自然的。
+
+    \begin{definition}
+        \label{1.2 def:speed}
+        (速度) 速度是一个映射, 它的自变量是运动参数\(\tau\),
+        它的值是坐标随运动参数变化的速率, 用\(v_i(\tau)\)
+        表示。
+        \begin{equation}
+            v_i(\tau) = \frac{d f_i(\tau)}{d \tau}
+        \end{equation}
+    \end{definition}
+
+    很明显, 速度构成了速度空间中的曲线, 类似的, 我们可以定义
+    加速度。
+    \begin{definition}
+        \label{1.2 eq:acceleration}
+        (加速度) 加速度是一个映射, 它的自变量是运动参数\(\tau\),
+        它的值是速度随运动参数变化的速率, 用\(a_i(\tau)\)
+        表示。
+        \begin{equation}
+            a_i(\tau) = \frac{d v_i(\tau)}{d \tau} = \frac{d^2 f_i(\tau)}{d \tau^2}
+        \end{equation}
+    \end{definition}
+
+    以后如果不加说明, 都以时间作为运动参数。
+
+    \begin{example}
+        \label{1.2 ex:constant speed}
+        (匀速直线运动) 一个物体在直线上匀速运动, 速度为
+        \(v_0\), 则其坐标为
+        \begin{equation}
+            \begin{cases}
+                x &= x_0 + v_x t \\
+                y &= y_0 + v_y t \\
+                z &= z_0 + v_z t
+            \end{cases}
+        \end{equation}
+        其速度为
+        \begin{equation}
+            \begin{cases}
+                v_x &= v_x \\
+                v_y &= v_y \\
+                v_z &= v_z
+            \end{cases}
+        \end{equation}
+        其加速度为
+        \begin{equation}
+            \begin{cases}
+                a_x &= 0 \\
+                a_y &= 0 \\
+                a_z &= 0
+            \end{cases}
+        \end{equation}
+    \end{example}
+
+    \begin{example}
+        \label{1.2 ex:constant acceleration}
+        (匀加速直线运动) 一个物体在直线上匀加速运动, 加速度为
+        \(a_0\), 则其坐标为
+        \begin{equation}
+            \begin{cases}
+                x &= x_0 + v_x t + \frac{1}{2} a_x t^2 \\
+                y &= y_0 + v_y t + \frac{1}{2} a_y t^2 \\
+                z &= z_0 + v_z t + \frac{1}{2} a_z t^2
+            \end{cases}
+        \end{equation}
+        其速度为
+        \begin{equation}
+            \begin{cases}
+                v_x &= v_x + a_x t \\
+                v_y &= v_y + a_y t \\
+                v_z &= v_z + a_z t
+            \end{cases}
+        \end{equation}
+        其加速度为
+        \begin{equation}
+            \begin{cases}
+                a_x &= a_x \\
+                a_y &= a_y \\
+                a_z &= a_z
+            \end{cases}
+        \end{equation}
+    \end{example}
+
+    \begin{example}
+        (惯性加速度的存在) 接下来考虑这么一件事情, 一个物体在伽
+        利略坐标系中有确定的运动, 我们转移到一个平动参考系中考虑
+        问题
+        \begin{equation}
+            \begin{cases}
+                x ^ \prime &= x - x_0(t) \\
+                y ^ \prime &= y - y_0(t) \\
+                z ^ \prime &= z - z_0(t)
+            \end{cases}
+        \end{equation}
+
+        计算其速度与加速度
+
+        \begin{equation}
+            \begin{cases}
+                v ^ \prime _ x &= v_x - \frac{d}{dt}x_0(t) \\
+                v ^ \prime _ y &= v_y - \frac{d}{dt}y_0(t) \\
+                v ^ \prime _ z &= v_z - \frac{d}{dt}z_0(t)
+            \end{cases}
+        \end{equation}
+
+        \begin{equation}
+            \begin{cases}
+                a ^ \prime _ x &= a_x + \frac{d^2}{dt^2}x_0(t) \\
+                a ^ \prime _ y &= a_y + \frac{d^2}{dt^2}y_0(t) \\
+                a ^ \prime _ z &= a_z + \frac{d^2}{dt^2}z_0(t)
+            \end{cases}
+        \end{equation}
+
+        发现与平常情况下多了一项, 这项就是参考系带来的速度与加速度。
+    \end{example}
+
+    \begin{definition}
+        \label{1.2 eq:inertial acceleration}
+        (惯性加速度) 加速度中多的几项, 被称为惯性加速度。
+    \end{definition}
+
+    \begin{example}
+        (离心力与科里奥利力) 我们换到一个旋转系中考虑这个问题。
+        \begin{equation}
+            \begin{bmatrix}
+                x \\
+                y \\
+                z
+            \end{bmatrix}_{rot} = \begin{bmatrix}
+                \cos \omega t & -\sin \omega t & 0 \\
+                \sin \omega t & \cos \omega t & 0 \\
+                0 & 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                x \\
+                y \\
+                z
+            \end{bmatrix}
+        \end{equation}
+
+        求两阶导数得到加速度。
+
+        \begin{equation}
+            \begin{split}
+                \begin{bmatrix}
+                    x \\
+                    y \\
+                    z
+                \end{bmatrix}_{rot} ^ {\prime \prime}
+                = \begin{bmatrix}
+                    \cos \omega t & -\sin \omega t & 0 \\
+                    \sin \omega t & \cos \omega t & 0 \\
+                    0 & 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x \\
+                    y \\
+                    z
+                \end{bmatrix} ^ {\prime \prime} \\ 
+                + \begin{bmatrix}
+                    -\omega^2 \sin \omega t & -\omega^2 \cos \omega t & 0 \\
+                    \omega^2 \cos \omega t & -\omega^2 \sin \omega t & 0 \\
+                    0 & 0 & 0
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x \\
+                    y \\
+                    z
+                \end{bmatrix} \\
+                + 2 \begin{bmatrix}
+                    -\omega \sin \omega t & -\omega \cos \omega t & 0 \\
+                    \omega \cos \omega t & -\omega \sin \omega t & 0 \\
+                    0 & 0 & 0
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x \\
+                    y \\
+                    z
+                \end{bmatrix} ^ {\prime}
+            \end{split}
+        \end{equation}
+
+        不难发现, 多出来了两项, 分别被称为离心加速度和科里奥利加速度。
+    \end{example}
+
+    \begin{problem}
+        \label{1.2 eq:problem 2 before Coriolis acceleration}
+        请解释科里奥利加速度前2的存在的物理原因。
+    \end{problem}
+    \begin{exercise}
+        \label{1.2 eq:exercise the rotating O}
+        在原点以R为半径\(\omega\)旋转的参考系里, 找到离心加速度。
+    \end{exercise}
+
+    \subsection{刚体的旋转}
+
+    对于一个不是点组成的物体, 比如生活中的水瓶, 书本什么的, 它们不但位置
+    可以移动, 方向也存在旋转, 描述这个旋转, 我们可以引入各种各样的体系。
+
+    旋转同样也是对刚体的一个操作, 我们可以认为刚体的角位置就是这个操作的
+    结果。而操作可以叠加, 我们先引入群的概念。
+
+    \begin{definition}
+        \label{1.3 math:group}
+        (群) 设G是一个集合, 有一个二元运算\(\cdot\)满足:
+        \begin{enumerate}
+            \item (封闭性) 任意两个元素\(g_1, g_2 \in G\)都有\(g_1 \cdot g_2 \in G\)
+            \item (结合律) 任意三个元素\(g_1, g_2, g_3 \in G\)都有
+                \(g_1 \cdot (g_2 \cdot g_3) = (g_1 \cdot g_2) \cdot g_3\)
+            \item (含幺性) 存在一个元素\(e \in G\)满足\(g \cdot e = e \cdot g = g\)
+            \item (含逆性) 对于任意一个元素\(g \in G\), 存在一个元素\(g^{-1} \in G\)
+                满足\(g \cdot g^{-1} = g^{-1} \cdot g = e\)
+        \end{enumerate}
+        我们称G为群, 运算\(\cdot\)为群的运算。
+    \end{definition}
+
+    这种代数结构和我们上述说的旋转操作及其类似, 旋转也能叠加, 且这种
+    叠加是结合的, 且存在一个单位元即不旋转, 于是我们尝试用群来描述旋
+    转。
+
+    \begin{definition}
+        \label{1.3 eq:3D Trotation group}
+        (三维保距群) 设\(\mathbb{R}^3\)是一个3维空间, 一个到自己
+        的映射, 满足保持任意两点间映射前后距离不变, 所有这种映射在
+        映射的复合下构成一个群, 称为三维旋转群。
+    \end{definition}
+
+    下面我将不加证明的指出一件事情。
+
+    \begin{theorem}
+        \label{1.3 eq:3D Trotation group is O(3)}
+        三维保距群同构于所有的3阶正交矩阵以矩阵的乘法为运算的群, 即O(3)。
+        \footnote{正交矩阵是指满足\(A^T A = I\)的方阵, 其中E是单位矩阵
+        , 不难验证它把一组正交单位基矢量变为另一组正交单位基矢量。}
+    \end{theorem}
+
+    \begin{problem}
+        \label{1.3 pb:3D Trotation group is O(3)}
+        证明这件事情。
+    \end{problem}
+
+    在该群中定义一串群元g(\(\tau\))的连续性是容易的, 同时也发现该群并不连续,
+    存在两类元素: 行列式为1的元素和行列式为-1的元素, 两类元素不连通。
+
+    \begin{corollary}
+        \label{1.3 eq:3D rotation group is SO(3)}
+        (三维旋转群) 选择O(3)中行列式为1的元素, 构成的乘法群是SO(3), 该
+        群中的元素就是三维旋转群。而当中相差的行列式的正负号, 代表着反演变换。
+    \end{corollary}
+
+    对于SO(3), 我们也可以给出它对应的速度: 角速度。
+
+    \begin{definition}
+        \label{1.3 def:3D angular velocity}
+        (角速度) 设g(t)是SO(3)中的一个曲线, 其变化可计为g(t) (I + \(\delta\)) = g(t + dt)
+        , 其中\(\delta\)是一个无穷小的矩阵。
+        角速度是个矩阵, 记作\(\omega\), 它的定义为\(\frac{\delta}{dt}\)。
+
+        为了保证仍然是一个旋转的变换, 我们要求(I + \(\delta\))在dt的一阶是正交的, 
+        所以\(\omega\)是一个反对称的矩阵, 有3个自由度 (参量), 于是角速度也可以表示为矢量。
+
+    \end{definition}
+
+    接下来, 我们来考虑角速度所代表的矩阵在直角坐标系的基矢量变换时的
+    矩阵值的改变。
+
+    \begin{corollary}
+        \label{1.3 eq:angular velocity rotation}
+        \begin{equation}
+            \begin{bmatrix}
+                0 & \omega_z & -\omega_y \\
+                -\omega_z & 0 & \omega_x \\
+                \omega_y & -\omega_x & 0
+            \end{bmatrix} \leftrightarrow \begin{bmatrix}
+                \omega_x \\ \omega_y \\ \omega_z
+            \end{bmatrix}
+        \end{equation}
+        对上述式子, 假定应用用U (矩阵) 表示的变换 (即改变物体的初始位置)。
+        \begin{equation}
+            U \begin{bmatrix}
+                0 & \omega_z & -\omega_y \\
+                -\omega_z & 0 & \omega_x \\
+                \omega_y & -\omega_x & 0
+            \end{bmatrix} U^T \leftrightarrow U \begin{bmatrix}
+                \omega_x \\ \omega_y \\ \omega_z
+            \end{bmatrix}
+        \end{equation}
+
+        我们发现, \(\omega\)矩阵在坐标系变换时, 乘了两个矩阵, 
+        有异于矢量的性质。
+    \end{corollary}
+
+    \begin{definition}
+        \label{1.3 def:3D tensor}
+        (张量) 一个n维(p,q)形张量是一个有\(n^{p+q}\)个元素的量, 记作
+        \(T_{i_1i_2\cdots i_p}^{j_1j_2\cdots j_q}\)。
+        记坐标系变化导致一个矩阵\(U^i_j = \frac{\partial x_i ^ \prime}{\partial x_j}\)
+        , 张量的变换为:
+        \begin{equation}
+            T_{i^\prime_1i^\prime_2\cdots i^\prime_p}^{j^\prime_1j^\prime_2\cdots j^\prime_q} = 
+            U^{i^\prime_1}_{i_2} \cdots U^{i^\prime_p}_{i_p} T_{i_1i_2\cdots i_p}^{j_1j_2\cdots j_q} U^{j^\prime_1}_{j_1} U^{j^\prime_2}_{j_2} \cdots U^{j^\prime_q}_{j_q}
+        \end{equation}
+        \footnote{此处用了爱因斯坦求和标记, 代表对重复的指标(上下标)求和, 下文都使用此标记。}
+    \end{definition}
+
+    可以验证, 角速度矩阵就是一个三维(1,1)形张量。而角速度矢量就是一个三维(1,0)形张量。
+    标量就是(0,0)形式的张量。
+
+    张量可以进行缩并, 将(p,q)形式的张量变为(p-1,q-1)形式的张量。
+
+    \begin{definition}
+        \label{1.3 def:tensor contraction}
+        (张量缩并) 设\(T_{i_1i_2\cdots i_p}^{j_1j_2\cdots j_q}\)是一个张量,
+        选出两个指标, 例如\(i_1\)和\(j_1\), 将其缩并, 得到一个三维(p-1,q-1)形张量,
+        为\(T_{\gamma i_2i_3\cdots i_p}^{\gamma j_2j_3\cdots j_q}\)(此处\(\gamma\)
+        求和掉了, 所以不含在缩并后的张量中。
+    \end{definition}
+
+    \begin{definition}
+        \label{1.3 def:tensor product}
+        (张量乘积) 设\(T_{i_1i_2\cdots i_p}^{j_1j_2\cdots j_q}\), 
+        \(S_{k_1k_2\cdots k_r}^{l_1l_2\cdots l_s}\)是两个张量,
+        乘积为\(T_{i_1i_2\cdots i_p}^{j_1j_2\cdots j_q} S_{k_1k_2\cdots k_r}^{l_1l_2\cdots l_s}\),
+        为一个三维(p+r,q+s)形张量。
+    \end{definition}
+
+    角速度是反对称的, 接下来给出全反对称张量的定义。
+
+    \begin{definition}
+        \label{1.3 def:antisymmetric tensor}
+        (全反对称张量) 设\(T_{i_1i_2\cdots i_p}^{j_1j_2\cdots j_q}\)是一个张量,
+        如果\(T_{i_1i_2\cdots i_p}^{j_1j_2\cdots j_q} = -T_{j_1j_2\cdots \hat{i_k} j_k \cdots i_q}^{i_1i_2\cdots \hat{j_k} i_k \cdots j_p}\),
+        此处小帽子表示不包含的指标, 则称\(T\)为全反对称张量。
+    \end{definition}
+
+    所有的全反对称张量自然而然的对应了一个叫做外微分的数学结构。
+
+    \begin{definition}
+        \label{1.3 def:1 exterior derivative}
+        (一阶外微分) 一阶外微分表示一个线元, 用\(dx_i\)表示。
+    \end{definition}
+
+    \begin{definition}
+        \label{1.3 def:high exterior derivative}
+        (高阶外微分) 高阶外微分由一阶外微分的乘积构成, 例如\(dx_i \bigwedge dx_j \bigwedge dx_k\),
+        可以由不同乘积线性组合, 满足以下性质。
+        \begin{enumerate}
+            \item 线性 \(a_1 dx_i \bigwedge dx_j \bigwedge dx_k + a_2 dx_i \bigwedge dx_j \bigwedge dx_k = (a_1 + a_2) dx_i \bigwedge dx_j \bigwedge dx_k\)
+            \item 线性 \(dx_i \bigwedge dx_j \bigwedge (a_1dx_{k_1} + a_2dx_{k_2}) = a_1 dx_i \bigwedge dx_j \bigwedge dx_{k_1} + a_2 dx_i \bigwedge dx_j \bigwedge dx_{k_2} \)
+            \item 反对称 \(dx_i \bigwedge dx_j \bigwedge dx_k = -dx_j \bigwedge dx_i \bigwedge dx_k\) (交换任意两个都是反对称的)
+        \end{enumerate}
+    \end{definition}
+
+    外微分结构和链上的积分有关, 暂且不提。
+
+    \begin{definition}
+        \label{1.3 def:exterior product}
+        (外积) 可以把两个矢量写成外微分的形式\(v_x\hat{i} + v_y\hat{j} + v_z \hat{k} \leftrightarrow v_x dx + v_y dy + v_z dz\)。
+        两个矢量的外积用\(v \times w\)表示, 定义为\(v \times w = v \bigwedge w\)。而由于只有三个维度, 外积的结果也可以用矢量表示。
+        \(v_x\hat{i} + v_y\hat{j} + v_z \hat{k} \leftrightarrow v_x dy \bigwedge dz + v_y dz \bigwedge dx + v_z dx \bigwedge dy\)
+    \end{definition}
+
+    我们用张量的语言描述这件事情。
+
+    \begin{definition}
+        \label{1.3 def:anti delta}
+        (全反对称单位张量) n维全反对称单位张量\(\epsilon\)是一个全反对称赝张量, 
+        满足\(\epsilon_{0123\cdots n}\) = 1。
+    \end{definition}
+
+    \begin{corollary}
+        \label{1.3 cor:exterior product}
+        (外积) 两个矢量的外积用张量表示为\(v \times w = \epsilon_{ijk} v^i w^j \hat{k}\)。
+    \end{corollary}
+
+
+    \subsection{约束}
+
+    上面, 我们讨论了部分运动学内容, 并指出了各种坐标系和
+    坐标系之间的转换。但是, 在现实世界中, 有坐标系还不够, 因为
+    坐标系可能受到一定的约束, 例如杆子两端的物体, 我们这里来仔细
+    讨论一下约束的问题。
+
+    \begin{definition}
+        \label{1.4 def:constraint}
+        (约束) 一个约束提供了坐标系中某些坐标所必须满足的要求。
+    \end{definition}
+
+    下面, 给出几个约束的例子 (在伽利略坐标系讨论)。
+
+    \begin{example}
+        \label{1.4 ex:stick}
+        (杆子) 一个杆子的两端固定在地面上, 用伽利略坐标系表示, 
+        两端的坐标分别为\((x_1, y_1, z_1)\)和\((x_2, y_2, z_2)\)。
+        杆子的长度为\(l\), 两端的坐标满足约束条件
+        \((x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2 = l^2\)。
+    \end{example}
+
+    \begin{example}
+        \label{1.4 ex:rope}
+        (绳子) 一个绳子的两端固定在地面上, 用伽利略坐标系表示,
+        两端的坐标分别为\((x_1, y_1, z_1)\)和\((x_2, y_2, z_2)\)。
+        绳子的长度为\(l\), 两端的坐标满足约束条件
+        \((x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2 \leq l^2\)。
+    \end{example}
+
+    \begin{example}
+        \label{1.4 ex:rigid body}
+        (刚体) 一个刚体的任意两点都由杆约束。
+    \end{example}
+
+    上述的三个例子中, 第一个例子和第二个例子有所不同, 第一个例子
+    约束所带来的是一个等式, 第二个式子约束所带来的是一个不等式。
+    这两种约束由本质上的不同, 于是下述定义就很自然了。
+
+    \begin{definition}
+        \label{1.4 def:equation constraint}
+        (等式约束) 一个等式约束对坐标系的约束是一个等式。
+    \end{definition}
+
+    \begin{definition}
+        \label{1.4 def:inequality constraint}
+        (不等式约束) 一个不等式约束对坐标系的约束是一个不等式。
+    \end{definition}
+
+    在这里我们只考虑等式约束, 不等式约束一般通过分类讨论变成等式约束
+    和无约束考虑。
+
+    除了坐标上的约束, 在速度和加速度上的约束也是很重要的, 接下来将给出
+    杆子上速度与加速度的约束。
+
+    \begin{example}
+        \label{1.4 ex:stick velocity}
+        (杆子速度) 一个杆子的两端固定在地面上, 用伽利略坐标系表示,
+        两端的坐标分别为\((x_1, y_1, z_1)\)和\((x_2, y_2, z_2)\)。
+        杆子的长度为\(l\), 两端的坐标满足约束条件
+        \((x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2 = l^2\)。
+        两边求导得到
+        \((x_1 - x_2) \cdot (\dot{x_1} - \dot{x_2})^2 + 
+        (y_1 - y_2) \cdot (\dot{y_1} - \dot{y_2})^2 + 
+        (z_1 - z_2) \cdot (\dot{z_1} - \dot{z_2})^2 = 0\)
+        其物理意义为两端沿杆速度相等。
+    \end{example}
+
+    \begin{example}
+        \label{1.4 ex:stick acceleration}
+        (杆子加速度) 一个杆子的两端固定在地面上, 用伽利略坐标系表示,
+        两端的坐标分别为\((x_1, y_1, z_1)\)和\((x_2, y_2, z_2)\)。
+        杆子的长度为\(l\), 两端的坐标满足约束条件
+        \((x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2 = l^2\)。
+        两边求二阶导得到
+        \((\dot{x_1} - \dot{x_2})^2 + 
+        (\dot{y_1} - \dot{y_2})^2 + 
+        (\dot{z_1} - \dot{z_2})^2 + 
+        (x_1 - x_2) \cdot (\ddot{x_1} - \ddot{x_2}) +
+        (y_1 - y_2) \cdot (\ddot{y_1} - \ddot{y_2}) +
+        (z_1 - z_2) \cdot (\ddot{z_1} - \ddot{z_2}) = 0
+        \)
+        其物理意义为两端沿杆加速度只差一个向心加速度。
+    \end{example}
+
+    上面说了, 刚体就是杆子的集合, 所以刚体的速度和加速度的约束也是一样。
+
+    \begin{problem}
+        \label{1.4 pb:rigid problem}
+        试着用类似方法说明, 刚体速度的关联可以认为一个点上的平动加上
+        绕这个点转动分别提供了两个速度。
+    \end{problem}
+    \begin{question}
+        重力会导致物体有一个向\(\hat{k}\)方向的加速度-g, 求从\((x_0,y_0,z_0)\)以
+        \((v_x,v_y,v_z)\)运动的物体之后的运动。
+    \end{question}
+
+    \begin{question}
+        求从\(x_0,0,z_0\)出发, 速度为\((v \sin \theta,0,v \cos \theta)\)的物体的运动轨迹(用x表示z)。
+    \end{question}
+
+    \begin{question}
+        利用上一道题的结论, 找出从原点出发, 初速度为v的物体, 落到一个过原点, 倾角为\(\theta\)
+        的斜面上的最远距离和发射角。
+        
+        再用换到斜坐标系的办法, 求出最远距离和发射角。
+    \end{question}
+
+    \begin{question}
+        从一个位置, 以一定初速度向空间中一条水平线发射物体, 求瞄准的角度在该水平线对应的
+        竖直平面的瞄准点的方程。
+    \end{question}
+
+    \begin{question}
+        求原点同初速度发射物体的轨迹的焦线(抛物线的焦线), 求其包络线。
+    \end{question}
+
+    \begin{question}
+        求以\(\omega\)矩阵旋转t时间后的旋转矩阵, 并证明旋转\(2\pi\)度后是单位矩阵。
+        \begin{equation}
+            MatrixExp[F] = (I+\frac{F}{n})^n = \sum_{k=0}^\infty \frac{F^k}{k!}
+        \end{equation}
+    \end{question}
+
+    \begin{question}
+        求证旋转不是交换的, 并且用对易子[A,B]描述他的不交换性。
+        \begin{equation}
+            [A,B] = AB - BA
+        \end{equation}
+        (计算向三个方向无穷小旋转的对易子)
+    \end{question}
+
+\end{document}
+
+% by bes beta
