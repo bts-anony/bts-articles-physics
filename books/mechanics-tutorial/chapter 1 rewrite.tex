@@ -1,0 +1,315 @@
+\documentclass{ctexart}
+
+\usepackage{amsmath}
+\numberwithin{equation}{subsection}
+\newtheorem{theorem}    {定理}
+\numberwithin{theorem}{subsection}
+\newtheorem{definition} {定义}
+\numberwithin{definition}{subsection}
+\newtheorem{proof}      {证明}
+\numberwithin{proof}{subsection}
+\newtheorem{lemma}      {引理}
+\numberwithin{lemma}{subsection}
+\newtheorem{example}    {例子}
+\numberwithin{example}{subsection}
+\newtheorem{remark}     {备注}
+\numberwithin{remark}{subsection}
+\newtheorem{corollary}  {推论}
+\numberwithin{corollary}{subsection}
+\newtheorem{exercise}   {练习}
+\numberwithin{exercise}{subsection}
+\newtheorem{problem}    {问题}
+\numberwithin{problem}{subsection}
+\newtheorem{question}   {习题}
+\numberwithin{question}{section}
+\newtheorem{method}     {方法}
+\numberwithin{method}{subsection}
+\usepackage{amssymb}
+
+
+\begin{document}
+    \section{运动学}
+    \subsection{我们所考虑的对象}
+    运动学顾名思义, 是描述物体运动的学科, 物体的运动, 就是物体在空间中的过程。
+
+    空间是由一系列点构成的, 就如同集合是由一个个元素构成的, 他们都是我们在研究的
+    重要的数学对象, 我们把这一系列点记作$\mathbb{T}$。
+
+    一个运动过程, 就是点在空间中的运动, 记作一个函数$S(t)$。
+    
+    \begin{equation}
+        \label{eq:1.1 S(t)}
+        S(t):\mathbb{R} \rightarrow \mathbb{T}
+    \end{equation}
+
+    对于一个常见的空间, 很容易发现它周围也有一些点, 基于这些点, 我们可以给出在
+    空间$\mathbb{T}$上的度量, 拓扑等结构, 这里不赘述, 但是我们先假定这个空间在一定程
+    度上是光滑的。
+
+    于是, 在一块较小的空间内, 可以在空间$\mathbb{T}$上赋予一个坐标系(双射)。
+    \begin{equation}
+        \Omega(q_i):\mathbb{R}^n \rightarrow \mathbb{T}
+    \end{equation}
+    \begin{equation}
+        \Omega^{-1}(P):\mathbb{T} \rightarrow \mathbb{R}^n
+    \end{equation}
+
+    则$\mathbb{T}$被称为n维流形。
+
+    一段很长的过程可以认为是一群很短的过程的组合, 我们只考虑全运动过程
+    发生在较小一块空间内的情况, 于是\ref{eq:1.1 S(t)}可以写成
+    \begin{equation}
+        S(t):\mathbb{R} \rightarrow \mathbb{R}^n
+    \end{equation}
+
+    既然被称为物体的运动, 物体随时间的变化, 也就是我们要研究的重要问题之一。
+    物体在各处都可能往临近的点运动, 描述这个运动, 我们自然而然引入了切从的概念。
+
+    切从$\mathbb{T}V$为一个描述$\mathbb{T}$上每个点的切向量 (微分性质) 的流形。
+
+    假设$\mathbb{T}$是一个n维流形, 则$\mathbb{T}V$在$\mathbb{T}$上每个
+    点都形成了一个线性空间, 总体上构成一个2n维流形, 称为切从。
+
+    我们将上面的$\Omega$也拓展到切从之上。
+
+    \begin{equation}
+        \Omega(q_i,\dot{q_i}):\mathbb{R}^n\times\mathbb{R}^n \rightarrow \mathbb{T}V
+    \end{equation}
+    \begin{equation}
+        \Omega^{-1}(P):\mathbb{T}V \rightarrow \mathbb{R}^n\times\mathbb{R}^n
+    \end{equation}
+
+    我们来考虑坐标系转换的相关事宜, 假定在这块区域内, 有q,Q两个坐标系, 他们的关系
+    由下述式子给定。
+
+    \begin{equation}
+        q_i = q_i(Q_i)
+    \end{equation}
+    \begin{equation}
+        Q_i = Q_i(q_i)
+    \end{equation}
+
+    $\mathbb{T}$上的坐标转换是显然的, 是由上式给出的, 但是给出上式以后, 
+    $\mathbb{T}V$上的坐标转换就不那么自由了, 我们考虑一个函数$S(t)$。
+
+    \begin{equation}
+        S(t) = (q_i(t)) = (q_i(Q_j(t)))
+        \footnotemark
+    \end{equation}
+    两边求导, 下式是显然的: 
+
+    \begin{equation}
+        \dot{S}(t) = (\dot{q_i}(t)) = (\frac{\partial q_i}{\partial Q_j}\dot{Q_j}(t))
+    \end{equation}
+
+    上式中使用了爱因斯坦求和标记, 重复指标j被求和掉了, 补充回去会得到:
+
+    \begin{equation}
+        \dot{S}(t) = (\dot{q_i}(t)) = (\sum_{j=1}^n\frac{\partial q_i}{\partial Q_j}\dot{Q_j}(t))
+    \end{equation}
+    以后爱因斯坦求和标记均省略不写。
+
+    由于$S(t)$的任意性, 必须有$\mathbb{T}V$上一个矢量$(q_i,\dot{q_i})$在另一组坐标下是
+
+    \begin{equation}
+        (Q_i,\dot{Q_i}) = (Q_i,\frac{\partial Q_i}{\partial q_j}\dot{q_j})
+    \end{equation}
+
+    相当于线性空间换了一组基矢量 (上文所说线性空间便是由此而来) 。
+
+    \footnotetext{这里用()表示向量。}
+
+    \subsection{我们所处的三维空间}
+
+    现在我们来考虑一些更具体的内容, 那就是我们所处在的这个三维空间。早在笛卡尔时代
+    就提出过用三个实数来表示空间中的一个点的做法, 同样的, 我们把三维空间(记作
+    $A_3$), 选择一个给定原点和三个个给定方向, 可以用三个实数描述坐标。
+
+    \begin{equation}
+        \Omega : (x,y,z) \mapsto P
+    \end{equation}
+
+    由于三维空间是平直的, 所以每个点的切向量都存在简单的对应关系, 
+    又按$\vec{a},\vec{b}$的顺序与按照$\vec{b},\vec{a}$的顺序平移(交换性)
+    结果是相同的。所以对于$A_3$上任意两个点, 可以把两个点的相对位置
+    (从一个点开始, 以一个切向量运行为1得到另一个点)转换成线性空间
+    $\mathbb{R}^3$上的对象。
+
+    在这个$A_3$中, 两个点的相对位置加减是有意义的, 但是两个点坐标直接加减是
+    无意义的, 相对位置与点相加也是有意义的。
+
+    三维直角坐标系被称作笛卡尔坐标系$(x,y,z)$。
+
+    当然, 我们也可以在三维空间中定义别的坐标系比如球坐标系$(R,\phi,\theta)$
+    \begin{equation}
+        \begin{cases}
+            R = \sqrt{x^2 + y^2 +z^2} \\
+            \phi = \arctan{\frac{y}{x}} \\
+            \theta = \arccos{\frac{z}{\sqrt{x^2 + y^2 +z^2}}}
+        \end{cases}
+    \end{equation}
+
+    \begin{equation}
+        \begin{cases}
+            x = R\sin{\theta}\cos{\phi} \\
+            y = R\sin{\theta}\sin{\phi} \\
+            z = R\cos{\theta}
+        \end{cases}
+    \end{equation}
+
+    柱坐标系$(R,\phi,z)$
+
+    \begin{equation}
+        \begin{cases}
+            R = \sqrt{x^2 + y^2} \\
+            \phi = \arctan{\frac{y}{x}} \\
+            z = z
+        \end{cases}
+    \end{equation}
+
+    \begin{equation}
+        \begin{cases}
+            x = R\cos{\phi} \\
+            y = R\sin{\phi} \\
+            z = z
+        \end{cases}
+    \end{equation}
+    
+
+    上述关系给定了坐标的变换, 由此, 切从上坐标变换也就可以导得了。
+
+    \begin{equation}
+        \begin{cases}
+            \dot{R} = \frac{x}{\sqrt{x^2 + y^2 + z^2}} \dot{x} + \frac{y}{\sqrt{x^2 + y^2 + z^2}}\dot{y} + \frac{z}{\sqrt{x^2 + y^2 + z^2}}\dot{z} \\
+            \dot{\phi} = \frac{y}{x^2 + y^2}\dot{x} - \frac{x}{x^2 + y^2}\dot{y} \\
+            \dot{\theta} = \frac{xz}{\sqrt{x^2 + y^2}(x^2+y^2+z^2)}\dot{x} + \frac{yz}{\sqrt{x^2 + y^2}(x^2+y^2+z^2)}\dot{y} - \frac{\sqrt{x^2 + y^2}}{x^2+y^2+z^2}\dot{z}
+        \end{cases}
+    \end{equation}
+        
+    \begin{equation}
+        \begin{cases}
+            \dot{x} = R\sin{\theta}\cos{\phi}\dot{R} + R\cos{\theta}\cos{\phi}\dot{\theta} - R\sin{\theta}\sin{\phi}\dot{\phi} \\
+            \dot{y} = R\sin{\theta}\sin{\phi}\dot{R} + R\cos{\theta}\sin{\phi}\dot{\theta} + R\sin{\theta}\cos{\phi}\dot{\phi} \\
+            \dot{z} = R\cos{\theta}\dot{R} - R\sin{\theta}\dot{\theta}
+        \end{cases}
+    \end{equation}
+
+    \begin{equation}
+        \begin{cases}
+            \dot{R} = \frac{x}{\sqrt{x^2 + y^2}}\dot{x} + \frac{y}{\sqrt{x^2 + y^2}}\dot{y} \\
+            \dot{\phi} = \frac{y}{x^2 + y^2}\dot{x} - \frac{x}{x^2 + y^2}\dot{y} \\
+            \dot{z} = \dot{z}
+        \end{cases}
+    \end{equation}
+
+    \begin{equation}
+        \begin{cases}
+            \dot{x} = R\cos{\phi}\dot{R} - R\sin{\phi}\dot{\phi} \\
+            \dot{y} = R\sin{\phi}\dot{R} + R\cos{\phi}\dot{\phi} \\
+            \dot{z} = \dot{z}
+        \end{cases}
+    \end{equation}
+    
+    \subsection{三维空间的旋转}
+
+    假设三维中有一个物体, 可以绕定轴旋转, 很容易找到一个参数$\theta$代表其旋转角,
+    于是就能对定轴旋转有坐标系。
+
+    假设固定的轴是$z$轴, 那么旋转将会带来一个坐标的改变:
+
+    \begin{equation}
+        \begin{bmatrix}
+            x^\prime \\ y^\prime \\ z^\prime
+        \end{bmatrix}
+        = \begin{bmatrix}
+            \cos\theta & \sin\theta & 0 \\
+            -\sin\theta & \cos\theta & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            x \\ y \\ z
+        \end{bmatrix}
+    \end{equation}
+
+    我们指出, 旋转就是应用于空间上的变换, 它保持原点不变(假定绕原点旋转), 
+    保持任意两个点距离不变, 把旋转代表的变换记作$T$。
+
+    可以证明, 该变换是线性的, 于是所有旋转$T$都可以写成一个矩阵的形式, 矩阵
+    保距离 (由内积定义) 不变, 就要求把单位向量映射成单位向量, 把正交向量映射
+    成正交向量。
+
+    \begin{equation}
+        T \in O(3) = \{A \in Matrix(3) | A^T A = I\}
+    \end{equation}
+
+    既然旋转是映射, 旋转自然也能复合, 复合的结果就是矩阵的乘法。
+    
+    一组旋转的连续性可以由$Matrix(3)$作为$\mathbb{R}^9$上的连续来简单定义,
+    引入连续性质后, 我们发现$O(3)$中的元素可以分为两类, 一类行列式为1, 一类
+    行列式为-1。($det(I) = 1 = det(AA^T) = det(A) ^2$), 同一类任意两个旋转
+    可以用一组连续的旋转(旋转空间中的对象)相关联, 称作联通, 不同类的旋转不联通。
+    
+    但是考察将我们手边的物体进行旋转, 必然是从一种状态连续旋转到另一种状态, 
+    这种旋转是行列式为1的旋转, 不难发现, 这样旋转在$O(3)$中是封闭的。
+
+    \begin{equation}
+        T \in SO(3) = \{A \in O(3) | det(A) = 1\}
+    \end{equation}
+
+    与之相对, 行列式为-1的矩阵代表空间的反演变换, 需要两次才能回归普通的旋转。
+
+    我们继续来考虑旋转空间上的代数, 先引入一些数学概念。
+
+    (群) 设G是一个集合, 有一个二元运算\(\cdot\)满足:
+    \begin{enumerate}
+        \item (封闭性) 任意两个元素\(g_1, g_2 \in G\)都有\(g_1 \cdot g_2 \in G\)
+        \item (结合律) 任意三个元素\(g_1, g_2, g_3 \in G\)都有
+            \(g_1 \cdot (g_2 \cdot g_3) = (g_1 \cdot g_2) \cdot g_3\)
+        \item (含幺性) 存在一个元素\(e \in G\)满足\(g \cdot e = e \cdot g = g\)
+        \item (含逆性) 对于任意一个元素\(g \in G\), 存在一个元素\(g^{-1} \in G\)
+            满足\(g \cdot g^{-1} = g^{-1} \cdot g = e\)
+    \end{enumerate}
+    我们称G为群, 运算\(\cdot\)为群的运算。
+
+    群的例子有整数以加法作为群的运算, 非负有理数上以乘法作为群的运算, n个元素上
+    的置换等。
+
+    如果一个群运算是交换的, 也就是说对于任意两个元素\(g_1, g_2 \in G\),
+    \(g_1 \cdot g_2 = g_2 \cdot g_1\), 我们称这个群为交换群(Abel 群)。
+
+    不难发现, 上述所说的旋转群是一个群, 但不是一个Abel群。
+
+    $SO(3)$和一般的群有所特殊, $SO(3)$是定义在一块连续区域上的群, 那么势必
+    要考虑无穷小的群元。
+
+    假定连续函数S(t), 其在t时刻的导数为:
+
+    \begin{equation}
+        \dot{S(t)} = \frac{dS(t)}{dt} = \frac{S(t + dt) - S(t)}{dt}
+    \end{equation}
+    
+    有:
+
+    \begin{equation}
+        \dot{S(t)}S^{-1}(t) = \frac{S(t + dt) - S(t)}{dt} S^{-1}(t) = \frac{S(t + dt)S^{-1}(t) - I}{dt}
+    \end{equation}
+
+    考虑到$S(t)$行列式始终为1, 所以$\dot{S(t)}S^{-1}(t)$反对称。
+
+    \begin{equation}
+        \dot{S(t)}S^{-1}(t) = 
+        \begin{bmatrix}
+            0 & \omega_1 & -\omega_2 \\
+            -\omega_1 & 0 & \omega_3 \\
+            \omega_2 & -\omega_3 & 0
+        \end{bmatrix}
+    \end{equation}
+
+    称其为角速度, 是$\mathbb{T}V$上的坐标系。
+
+\end{document}
+
+% by bts
+% rewriting chapter 1
+% The first version is too mathy, and full of definitions
+% plz use xelatex to compile
