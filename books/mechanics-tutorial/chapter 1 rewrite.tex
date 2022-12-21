@@ -16,7 +16,7 @@
 \numberwithin{remark}{subsection}
 \newtheorem{corollary}  {推论}
 \numberwithin{corollary}{subsection}
-\newtheorem{exercise}   {练习}
+\newtheorem{exercise}   {习题}
 \numberwithin{exercise}{subsection}
 \newtheorem{problem}    {问题}
 \numberwithin{problem}{subsection}
@@ -25,6 +25,7 @@
 \newtheorem{method}     {方法}
 \numberwithin{method}{subsection}
 \usepackage{amssymb}
+\usepackage{physics}
 
 
 \begin{document}
@@ -33,28 +34,28 @@
     运动学顾名思义, 是描述物体运动的学科, 物体的运动, 就是物体在空间中的过程。
 
     空间是由一系列点构成的, 就如同集合是由一个个元素构成的, 他们都是我们在研究的
-    重要的数学对象, 我们把这一系列点记作$\mathbb{T}$。
+    重要的数学对象, 我们把这一系列点记作$\mathbb{M}$。
 
     一个运动过程, 就是点在空间中的运动, 记作一个函数$S(t)$。
     
     \begin{equation}
         \label{eq:1.1 S(t)}
-        S(t):\mathbb{R} \rightarrow \mathbb{T}
+        S(t):\mathbb{R} \rightarrow \mathbb{M}
     \end{equation}
 
     对于一个常见的空间, 很容易发现它周围也有一些点, 基于这些点, 我们可以给出在
-    空间$\mathbb{T}$上的度量, 拓扑等结构, 这里不赘述, 但是我们先假定这个空间在一定程
+    空间$\mathbb{M}$上的度量, 拓扑等结构, 这里不赘述, 但是我们先假定这个空间在一定程
     度上是光滑的。
 
-    于是, 在一块较小的空间内, 可以在空间$\mathbb{T}$上赋予一个坐标系(双射)。
+    于是, 在一块较小的空间内, 可以在空间$\mathbb{M}$上赋予一个坐标系(双射)。
     \begin{equation}
-        \Omega(q_i):\mathbb{R}^n \rightarrow \mathbb{T}
+        \Omega(q_i):\mathbb{R}^n \rightarrow \mathbb{M}
     \end{equation}
     \begin{equation}
-        \Omega^{-1}(P):\mathbb{T} \rightarrow \mathbb{R}^n
+        \Omega^{-1}(P):\mathbb{M} \rightarrow \mathbb{R}^n
     \end{equation}
 
-    则$\mathbb{T}$被称为n维流形。
+    则$\mathbb{M}$被称为n维流形。
 
     一段很长的过程可以认为是一群很短的过程的组合, 我们只考虑全运动过程
     发生在较小一块空间内的情况, 于是\ref{eq:1.1 S(t)}可以写成
@@ -65,18 +66,18 @@
     既然被称为物体的运动, 物体随时间的变化, 也就是我们要研究的重要问题之一。
     物体在各处都可能往临近的点运动, 描述这个运动, 我们自然而然引入了切从的概念。
 
-    切从$\mathbb{T}V$为一个描述$\mathbb{T}$上每个点的切向量 (微分性质) 的流形。
+    切从$T\mathbb{M}$为一个描述$\mathbb{M}$上每个点的切向量 (微分性质) 的流形。
 
-    假设$\mathbb{T}$是一个n维流形, 则$\mathbb{T}V$在$\mathbb{T}$上每个
+    假设$\mathbb{M}$是一个n维流形, 则$T\mathbb{M}$在$\mathbb{M}$上每个
     点都形成了一个线性空间, 总体上构成一个2n维流形, 称为切从。
 
     我们将上面的$\Omega$也拓展到切从之上。
 
     \begin{equation}
-        \Omega(q_i,\dot{q_i}):\mathbb{R}^n\times\mathbb{R}^n \rightarrow \mathbb{T}V
+        \Omega(q_i,\dot{q_i}):\mathbb{R}^n\times\mathbb{R}^n \rightarrow T\mathbb{M}
     \end{equation}
     \begin{equation}
-        \Omega^{-1}(P):\mathbb{T}V \rightarrow \mathbb{R}^n\times\mathbb{R}^n
+        \Omega^{-1}(P):T\mathbb{M} \rightarrow \mathbb{R}^n\times\mathbb{R}^n
     \end{equation}
 
     我们来考虑坐标系转换的相关事宜, 假定在这块区域内, 有q,Q两个坐标系, 他们的关系
@@ -89,8 +90,8 @@
         Q_i = Q_i(q_i)
     \end{equation}
 
-    $\mathbb{T}$上的坐标转换是显然的, 是由上式给出的, 但是给出上式以后, 
-    $\mathbb{T}V$上的坐标转换就不那么自由了, 我们考虑一个函数$S(t)$。
+    $\mathbb{M}$上的坐标转换是显然的, 是由上式给出的, 但是给出上式以后, 
+    $T\mathbb{M}$上的坐标转换就不那么自由了, 我们考虑一个函数$S(t)$。
 
     \begin{equation}
         S(t) = (q_i(t)) = (q_i(Q_j(t)))
@@ -109,7 +110,7 @@
     \end{equation}
     以后爱因斯坦求和标记均省略不写。
 
-    由于$S(t)$的任意性, 必须有$\mathbb{T}V$上一个矢量$(q_i,\dot{q_i})$在另一组坐标下是
+    由于$S(t)$的任意性, 必须有$T\mathbb{M}$上一个矢量$(q_i,\dot{q_i})$在另一组坐标下是
 
     \begin{equation}
         (Q_i,\dot{Q_i}) = (Q_i,\frac{\partial Q_i}{\partial q_j}\dot{q_j})
@@ -232,14 +233,14 @@
     \end{equation}
 
     我们指出, 旋转就是应用于空间上的变换, 它保持原点不变(假定绕原点旋转), 
-    保持任意两个点距离不变, 把旋转代表的变换记作$T$。
+    保持任意两个点距离不变, 把旋转代表的变换记作$R$。
 
-    可以证明, 该变换是线性的, 于是所有旋转$T$都可以写成一个矩阵的形式, 矩阵
+    可以证明, 该变换是线性的, 于是所有旋转$R$都可以写成一个矩阵的形式, 矩阵
     保距离 (由内积定义) 不变, 就要求把单位向量映射成单位向量, 把正交向量映射
     成正交向量。
 
     \begin{equation}
-        T \in O(3) = \{A \in Matrix(3) | A^T A = I\}
+        R \in O(3) = \{A \in Matrix(3) | A^T A = I\}
     \end{equation}
 
     既然旋转是映射, 旋转自然也能复合, 复合的结果就是矩阵的乘法。
@@ -253,10 +254,27 @@
     这种旋转是行列式为1的旋转, 不难发现, 这样旋转在$O(3)$中是封闭的。
 
     \begin{equation}
-        T \in SO(3) = \{A \in O(3) | det(A) = 1\}
+        R \in SO(3) = \{A \in O(3) | det(A) = 1\}
     \end{equation}
 
     与之相对, 行列式为-1的矩阵代表空间的反演变换, 需要两次才能回归普通的旋转。
+
+    考虑$R$在矢量上的作用, 
+
+    \begin{equation}
+        \begin{bmatrix}
+            x \\ y \\ z
+        \end{bmatrix}^\prime = R \begin{bmatrix}
+            x \\ y \\ z
+        \end{bmatrix}
+    \end{equation}
+    \begin{equation}
+        \begin{bmatrix}
+            x & y & z
+        \end{bmatrix}^\prime = \begin{bmatrix}
+            x & y & z
+        \end{bmatrix} R^T
+    \end{equation}
 
     我们继续来考虑旋转空间上的代数, 先引入一些数学概念。
 
@@ -280,35 +298,325 @@
     不难发现, 上述所说的旋转群是一个群, 但不是一个Abel群。
 
     $SO(3)$和一般的群有所特殊, $SO(3)$是定义在一块连续区域上的群, 那么势必
-    要考虑无穷小的群元。
-
-    假定连续函数S(t), 其在t时刻的导数为:
+    要考虑无穷小的群元, 给定光滑函数$R(t)$。
 
     \begin{equation}
-        \dot{S(t)} = \frac{dS(t)}{dt} = \frac{S(t + dt) - S(t)}{dt}
-    \end{equation}
-    
-    有:
-
-    \begin{equation}
-        \dot{S(t)}S^{-1}(t) = \frac{S(t + dt) - S(t)}{dt} S^{-1}(t) = \frac{S(t + dt)S^{-1}(t) - I}{dt}
-    \end{equation}
-
-    考虑到$S(t)$行列式始终为1, 所以$\dot{S(t)}S^{-1}(t)$反对称。
-
-    \begin{equation}
-        \dot{S(t)}S^{-1}(t) = 
         \begin{bmatrix}
-            0 & \omega_1 & -\omega_2 \\
-            -\omega_1 & 0 & \omega_3 \\
-            \omega_2 & -\omega_3 & 0
+            x \\ y \\ z
+        \end{bmatrix}^\prime = R(t) \begin{bmatrix}
+            x \\ y \\ z
         \end{bmatrix}
     \end{equation}
 
-    称其为角速度, 与$SO(3)$的描述共同形成$\mathbb{T}V$上的坐标系。
-    \footnotemark
-    \footnotetext{此处, 坐标系的概念已经被拓宽了, 不要求n维流形由n个实数所表示。}
+    \begin{equation}
+        \begin{bmatrix}
+            x \\ y \\ z
+        \end{bmatrix}^\prime = (R(t)R(\tau)^T) R(\tau) \begin{bmatrix}
+            x \\ y \\ z
+        \end{bmatrix}
+    \end{equation}
 
+    当$\tau$无限接近于$t$时, 无穷小的旋转由矩阵$R(t + \dd t)R(t)^T$
+    给出。另一方面, 两边转置, 有
+
+    \begin{equation}
+        \begin{bmatrix}
+            x & y & z
+        \end{bmatrix}^\prime = \begin{bmatrix}
+            x & y & z
+        \end{bmatrix} R(\tau)^T R(\tau) R(t)^T
+    \end{equation}
+
+    得到$R(t) R(t + \dd t)^T$, 考虑到旋转无穷小, 该矩阵和$I$仅差一个$\dd t$
+    小量。
+
+    \begin{equation}
+        R(t + \dd t)R(t)^T = I + \Omega \dd t 
+    \end{equation}
+
+    考虑到左边属于$SO(3)$, 有:
+
+    \begin{equation}
+        (I + \Omega \dd t)(I + \Omega \dd t)^T = I
+    \end{equation}
+
+    \begin{equation}
+        \Omega + \Omega^T = 0
+    \end{equation}
+
+    即$\Omega$是一个反对称矩阵, 有三个自由度, 可以和矢量对应起来。
+
+    \begin{equation}
+        \Omega = \begin{bmatrix}
+            0 & -\omega_3 & \omega_2 \\
+            \omega_3 & 0 & -\omega_1 \\
+            -\omega_2 & \omega_1 & 0
+        \end{bmatrix} \leftrightarrow \begin{bmatrix}
+            \omega_1 \\ \omega_2 \\ \omega_3
+        \end{bmatrix}
+    \end{equation}
+
+    接下来, 我们来考虑转动坐标系在转动变换$U$下的变换。
+
+    \begin{equation}
+        R^\prime = U R U^T
+    \end{equation}
+
+    同样的, 有:
+
+    \begin{equation}
+        \Omega^\prime = U \Omega U^T
+    \end{equation}
+
+    \subsection{张量}
+
+    上述过程中, 我们发现竖的矢量, 横的矢量, 矩阵, 所有这些对象坐标转化不同, 
+    我们为了描述一个对象的坐标变化, 引入张量的概念。先把上面的方程写成分量的形式
+    (我们把行标记作下标, 列标记作上标)。
+
+    \begin{equation}
+        v^\prime_i = \sum_{j=1}^3 U^j_i v_j
+    \end{equation}
+
+    \begin{equation}
+        v^{\prime i} = \sum_{j=1}^3 U^i_j v^j
+    \end{equation}
+
+    \begin{equation}
+        R^{\prime i}_j = \sum_{m=1}^3 \sum_{n=1}^3 U^i_m U^n_j R^m_n
+    \end{equation}
+
+    略去重复两遍指标的$\Sigma$(称为Einstein notation), 写成(以下都略去):
+
+    \begin{equation}
+        v^\prime_i = U^{j^\prime}_i v_j
+    \end{equation}
+
+    \begin{equation}
+        v^{\prime i} = U^i_{j^\prime} v^j
+    \end{equation}
+
+    \begin{equation}
+        R^{\prime i}_j = U^{i^\prime}_m U^n_{j^\prime} R^m_n
+    \end{equation}
+
+    事实上, $U$是:
+
+    \begin{equation}
+        U^j_i = \frac{\partial x_i}{\partial x_j^\prime}
+    \end{equation}
+
+    如果一个量有$3^{p+q}$个分量, 而且在坐标变换$U$下, 满足
+
+    \begin{equation}
+        T^{\prime i_1 \cdots i_p}_{j_1 \cdots j_q} = U^{i_1^\prime}_{n_1} \cdots U^{i_p^\prime}_{n_p} T^{n_1 \cdots n_p}_{m_1 \cdots m_q} U^{m_1}_{j_1^\prime} \cdots U^{m_q}_{j_q^\prime}
+    \end{equation}
+
+    那么就称这个量为$(p,q)$型张量。如果$p=q=0$, 那么就是标量, 如果$q=1$, 那么就是矢量, 如果$p=q=1$, 那么就对应了一个矩阵
+    (概念上请注意, 矩阵仅仅是数, 而张量是定义于空间上的一个量, 在一定坐标下一定表达)。
+
+    张量在之后的学习中, 包括场论, 广相等都是很重要的概念, 所有物理方程都是张量等式。
+
+    如果一个$(0,p)$型张量满足:
+
+    \begin{equation}
+        T_{i_1 \cdots i_{m-1} i_n i_{m+1} \cdots i_{n-1} i_m i_{n+1} \cdots i_p} = 
+        - T_{i_1 \cdots i_p}
+    \end{equation}
+
+    那么就称这个张量为全反对称张量, 全反对称张量和微分结构有关, 
+    微分结构可以写成若干个$dx_{i_1} \wedge dx_{i_2} \wedge \cdots \wedge dx_{i_p}$求和的形式, 并满足:
+
+    \begin{equation}
+        dx_{i_1} \wedge dx_{i_2} \cdots \wedge dx_{i_m-1} \wedge dx_{i_n} \wedge dx_{i_{m+1}} \cdots \wedge dx_{i_{n-1}} \wedge dx_{i_m} \wedge dx_{i_{n+1}} \cdots \wedge dx_{i_p} = 
+        - dx_{i_1} \wedge dx_{i_2} \cdots \wedge dx_{i_p}
+    \end{equation}
+
+    $n$维空间上的$p$阶微分结构是$\frac{n!}{p!(n-p)!}$维的线性空间。
+    在三维空间中, 可以定义从二阶微分结构到一阶微分结构的映射。
+    \footnotemark
+    \footnotetext{事实上, 给定度量$g$后可以定义$p$到$n-p$的映射。}
+
+    \begin{eqnarray}
+        dx_1 = dx_2 \wedge dx_3 \\
+        dx_2 = dx_3 \wedge dx_1 \\
+        dx_3 = dx_1 \wedge dx_2
+    \end{eqnarray}
+
+    显然, 角动量就是全反对称张量。
+
+    \subsection{坐标系变换}
+
+    考虑三维正交坐标系$(x_1, x_2, x_3)$, 以及另一个正交坐标系$(x_1^\prime, x_2^\prime, x_3^\prime)$。
+
+    \subsubsection{平动}
+
+        平动是指坐标系的平移, 也就是说, 坐标系的原点在空间中的位置发生了变化, 但是坐标系的方向没有变化。
+
+        \begin{equation}
+            \begin{aligned}
+                x_1^\prime = x_1 + s_1 \\
+                x_2^\prime = x_2 + s_2 \\
+                x_3^\prime = x_3 + s_3
+            \end{aligned}
+        \end{equation}
+
+        两边求导有:
+
+        \begin{equation}
+            \begin{aligned}
+                \frac{\dd x_1^\prime}{\dd t} = \frac{\dd x_1}{\dd t} + \frac{\dd s_1}{\dd t} \\
+                \frac{\dd x_2^\prime}{\dd t} = \frac{\dd x_2}{\dd t} + \frac{\dd s_2}{\dd t} \\
+                \frac{\dd x_3^\prime}{\dd t} = \frac{\dd x_3}{\dd t} + \frac{\dd s_3}{\dd t}
+            \end{aligned}
+        \end{equation}
+
+        \begin{equation}
+            \begin{aligned}
+                \frac{\dd^2 x_1^\prime}{\dd t^2} = \frac{\dd^2 x_1}{\dd t^2} + \frac{\dd^2 s_1}{\dd t^2} \\
+                \frac{\dd^2 x_2^\prime}{\dd t^2} = \frac{\dd^2 x_2}{\dd t^2} + \frac{\dd^2 s_2}{\dd t^2} \\
+                \frac{\dd^2 x_3^\prime}{\dd t^2} = \frac{\dd^2 x_3}{\dd t^2} + \frac{\dd^2 s_3}{\dd t^2}
+            \end{aligned}
+        \end{equation}
+
+        发现除了坐标系变换导致的$S(t)$的改变, $\frac{\dd S(t)}{\dd t}$和
+        $\frac{\dd^2 S(t)}{\dd t^2}$都有改变, 称为惯性速度与惯性加速度。
+
+    \subsubsection{转动}
+
+        转动是指坐标基矢量的变换, 
+
+        \begin{equation}
+            \begin{bmatrix}
+                x_1^\prime \\
+                x_2^\prime \\
+                x_3^\prime
+            \end{bmatrix} = \Omega \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3
+            \end{bmatrix}
+        \end{equation}
+
+        两边求导有:
+
+        \begin{equation}
+            \begin{bmatrix}
+                \frac{\dd x_1^\prime}{\dd t} \\
+                \frac{\dd x_2^\prime}{\dd t} \\
+                \frac{\dd x_3^\prime}{\dd t}
+            \end{bmatrix} = \Omega \begin{bmatrix}
+                \frac{\dd x_1}{\dd t} \\
+                \frac{\dd x_2}{\dd t} \\
+                \frac{\dd x_3}{\dd t}
+            \end{bmatrix} + \frac{\dd \Omega}{\dd t} \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3
+            \end{bmatrix} = \Omega \begin{bmatrix}
+                \frac{\dd x_1}{\dd t} \\
+                \frac{\dd x_2}{\dd t} \\
+                \frac{\dd x_3}{\dd t}
+            \end{bmatrix} + \Omega \omega \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3
+            \end{bmatrix}
+        \end{equation}
+
+        \begin{equation}
+            \begin{bmatrix}
+                \frac{\dd^2 x_1^\prime}{\dd t^2} \\
+                \frac{\dd^2 x_2^\prime}{\dd t^2} \\
+                \frac{\dd^2 x_3^\prime}{\dd t^2}
+            \end{bmatrix} = \Omega \begin{bmatrix}
+                \frac{\dd^2 x_1}{\dd t^2} \\
+                \frac{\dd^2 x_2}{\dd t^2} \\
+                \frac{\dd^2 x_3}{\dd t^2}
+            \end{bmatrix} + \frac{\dd^2 \Omega}{\dd t^2} \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3
+            \end{bmatrix} + 2\frac{\dd \Omega}{\dd t} \begin{bmatrix}
+                \frac{\dd x_1}{\dd t} \\
+                \frac{\dd x_2}{\dd t} \\
+                \frac{\dd x_3}{\dd t}
+            \end{bmatrix}
+        \end{equation}
+
+        假定角速度$\omega$不变, 则
+
+        \begin{equation}
+            \begin{bmatrix}
+                \frac{\dd^2 x_1^\prime}{\dd t^2} \\
+                \frac{\dd^2 x_2^\prime}{\dd t^2} \\
+                \frac{\dd^2 x_3^\prime}{\dd t^2}
+            \end{bmatrix} = \Omega \begin{bmatrix}
+                \frac{\dd^2 x_1}{\dd t^2} \\
+                \frac{\dd^2 x_2}{\dd t^2} \\
+                \frac{\dd^2 x_3}{\dd t^2}
+            \end{bmatrix} + \Omega \omega^2 \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3
+            \end{bmatrix} + 2\Omega \omega \begin{bmatrix}
+                \frac{\dd x_1}{\dd t} \\
+                \frac{\dd x_2}{\dd t} \\
+                \frac{\dd x_3}{\dd t}
+            \end{bmatrix}
+        \end{equation}
+
+        上述$\Omega\omega^2\thicksim$, $2\Omega\omega\thicksim$两项被称为
+        离心加速度和科里奥利加速度, 在学习牛顿三定律后会有更加全面的认识。
+
+    \subsection{习题}
+
+    \begin{exercise}
+        假设物体以$\omega$为角速度, 从$I$处开始旋转, 求证:
+        \begin{equation}
+            \Omega = MatrixExp(\omega t) = I + \omega t + \frac{1}{2}\omega^2 t^2 + \frac{1}{6} \omega^3 t^3 \cdots
+        \end{equation}
+    \end{exercise}
+
+    \begin{exercise}
+        求证:
+        \begin{equation}
+            MatrixExp(A) MatrixExp(B) = MatrixExp(A + B + \frac{1}{2} [A, B])
+        \end{equation}
+        其中$[A, B] = AB - BA$。
+    \end{exercise}
+
+    \begin{exercise}
+        定义矩阵
+        \begin{equation}
+            \begin{aligned}
+                \Sigma_1 = \begin{bmatrix}
+                    0 & 0 & 0 \\
+                    0 & 0 & 1 \\
+                    0 & -1 & 0
+                \end{bmatrix} \\
+                \Sigma_2 = \begin{bmatrix}
+                    0 & 0 & -1 \\
+                    0 & 0 & 0 \\
+                    1 & 0 & 0
+                \end{bmatrix} \\
+                \Sigma_3 = \begin{bmatrix}
+                    0 & 1 & 0 \\
+                    -1 & 0 & 0 \\
+                    0 & 0 & 0
+                \end{bmatrix}
+            \end{aligned}
+        \end{equation}
+        计算他们相互对易$[A,B]$的结果。
+    \end{exercise}
+    
+    \begin{exercise}
+        定义椭球坐标系$(\zeta_1,\zeta_2,\zeta_3)$为下述方程的三个根。
+        \begin{equation}
+            \frac{x^2}{a^2+\zeta} + \frac{y^2}{b^2+\zeta} + \frac{z^2}{c^2+\zeta} = 1
+        \end{equation}
+        导出其坐标与切从的对应关系。
+    \end{exercise}
 \end{document}
 
 % by bts
