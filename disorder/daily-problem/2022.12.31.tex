@@ -1,0 +1,83 @@
+% !TEX program = xelatex
+\documentclass {ctexart}
+
+\usepackage {amsmath}
+\usepackage {physics}
+\usepackage {tikz}
+\usepackage {graphics}
+\usepackage {array}
+\usepackage {xcolor}
+\usepackage {amssymb}
+\usepackage {listing}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+\title {每日一题\\{\small 傅立叶变换-2}}
+
+\date{\today}
+
+\begin{document}
+    \maketitle {}
+
+    今天, 我们来把昨天的结论推导到连续谱。
+
+    \begin{equation}
+        f(x) = \frac{1}{b-a} \sum_{n=-\infty}^{\infty} e^{\frac{2n\pi}{b-a} i x} \int_a^b f(X)e^{-\frac{2n}{b-a} i X} \dd X
+    \end{equation}
+
+    我们取新变量\(\alpha = \frac{2 \pi n}{b-a}\), 由于取极限\(b \rightarrow \infty,a \rightarrow -\infty\)化求和为积分(\(d\alpha = \frac{2\pi}{b-a}dn = \frac{2\pi}{b-a}\))。
+
+    \begin{equation}
+        f(x) = \int_{-\infty}^{\infty} e^{i \alpha x} \int_{-\infty}^{\infty} f(X)e^{-i \alpha X} \dd X \dd \alpha \frac{b-a}{2\pi} \frac{1}{b-a}
+    \end{equation}
+
+    \begin{equation}
+        f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{i \alpha x} \int_{-\infty}^{\infty} f(X)e^{-i \alpha X} \dd X \dd \alpha
+    \end{equation}
+
+    不失对称性的, 我们展开。
+
+    \begin{equation}
+        F(\alpha) = \frac{1}{\sqrt {2\pi}} \int_{-\infty}^{\infty} f(X)e^{-i \alpha X} \dd X
+    \end{equation}
+
+    \begin{equation}
+        f(x) = \frac{1}{\sqrt {2\pi}} \int_{-\infty}^{\infty} e^{i \beta x} F(\beta) \dd \beta
+    \end{equation}
+
+    我们把\(F(\alpha)\)称作\(f(x)\)的傅立叶谱, 记作\(F(x) = \mathscr{F} [ f(x) ]\)。
+
+    \begin{itemize}
+        \item 计算高斯分布的傅立叶谱。
+                \begin{equation}
+                    f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{x^2}{2\sigma^2}}
+                \end{equation}
+        \item 计算 Dirac delta 函数(\(\delta(x)\))的傅立叶谱, \(\delta\)函数满足:
+                \begin{equation}
+                    \int_{-\infty}^{\infty} \delta(x) f(x) \dd x = f(0)
+                \end{equation}
+        \item 在量子力学中, \(\phi(p)\)是\(\psi(x)\)的傅立叶谱(\(\hbar = 1\)), 证明
+                \begin{equation}
+                    \overline{p} = \int_{-\infty}^{\infty} \phi^\dagger(p) \phi(p) p \dd p = -i \int_{-\infty}^{\infty} \psi^\dagger(x) \frac{\partial}{\partial x} \psi(x) \dd x
+                \end{equation}
+        \item Yukawa 场, 试推导球对称恒定场\(\phi\) (在坐标原点处容许一个源)。
+                \begin{equation}
+                    \mathscr {L} = -\frac{1}{2} (\frac{\partial \phi}{\partial x^\mu}\frac{\partial \phi}{\partial x^\mu} + \mu^2 \phi^2)
+                \end{equation}
+                什么?你没学过场论?那也没关系, 上述拉格朗日密度可以变成方程
+                \begin{equation}
+                    \nabla^2 \phi - \mu^2 \phi - \frac{1}{c^2}\frac{\partial^2 \phi}{\partial t^2} = G \delta(x,y,z)
+                \end{equation}
+                球对称恒定场 可以认为方程是
+                \begin{equation}
+                    \nabla^2 \phi(x,y,z) = \mu^2 \phi(x,y,z) + G \delta (x,y,z)
+                \end{equation}
+                
+                解出关于\(\mathscr{F}[\phi(x,y,z)]\)的方程。
+
+                解出\(\mathscr{F}[\phi(x,y,z)]\), 从而积分回到\(\phi(x,y,z)\)。
+
+    \end{itemize}
+
+\end{document}
+
