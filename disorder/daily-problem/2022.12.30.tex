@@ -1,0 +1,58 @@
+% !TEX program = xelatex
+\documentclass {ctexart}
+
+\usepackage {amsmath}
+\usepackage {physics}
+\usepackage {tikz}
+\usepackage {graphics}
+\usepackage {array}
+\usepackage {xcolor}
+\usepackage {amssymb}
+\usepackage {listing}
+
+\title {每日一题\\{\small 傅立叶变换-1}}
+
+\date{\today}
+
+\begin{document}
+    \maketitle {}
+
+    接下来几天, 我们将学习傅立叶变换 (只需要高数知识) 。
+
+    考虑一定范围\([a,b]\)内的连续函数, 定义运算符\(\cdot\), 使得\(f(x) \cdot g(x) = \int_a^b f(x)g(x) \dd x\)。
+
+    接下来我们考虑两组函数\(f_n(x),f^m(x)\), 满足\(f_n(x) \cdot f^m(x) = \delta_n^m\)。其中\(\delta_n^m\)在\(m=n\)时为1, 在\(m \neq n\)时为0。
+
+    我们希望把某个函数\(f(x)\)分解成这组函数的线性组合, 即\(f(x) = \sum_{n=1}^\infty c_n f_n(x)\), 其中\(c_n\)是常数, 只需将\(f(x)\)分别点乘上\(f^n(x)\)就能得到\(c_n\)。
+    
+    我们取
+
+    \[
+        f_n(x) = e^{\frac{2n\pi}{b-a} i x}
+    \]
+
+    则
+
+    \[
+        f^m(x) = \frac{1}{b-a} e^{-\frac{2m}{b-a} i x}
+    \]
+
+    此时, 有\(f_n(x)f^m(x) = \delta_n^m\), 从而得到傅立叶变换:
+
+    \begin{equation}
+        f(x) = \frac{1}{b-a} \sum_{n=-\infty}^{\infty} e^{\frac{2n\pi}{b-a} i x} \int_a^b f(X)e^{-\frac{2n\pi}{b-a} i X} \dd X
+    \end{equation}
+        
+
+    \begin{itemize}
+        \item 对函数\(f(x) = x, x \in [0,2\pi] \)进行傅立叶变换。
+        \item 对函数\(f(x) = x^2, x \in [0,2\pi] \)进行傅立叶变换, 并把右式求导检查你的结果。
+        \item 反过来将右边积分, 计算\(\sum_{n=1}^{\infty} \frac{1}{n^2}\), \(\sum_{n=1}^{\infty} \frac{1}{n^4}\), \(\sum_{n=1}^{\infty} \frac{1}{n^6}\)
+        \item (补充) 事实上上面过程隐含了任何一个连续函数都能傅立叶展开, 证明傅立叶展开的求和式满足
+        \[
+            \lim_{k \rightarrow \infty} \int_a^b (f(x) - \frac{1}{b-a}\sum_{n=-k}^{k} e^{\frac{2n\pi}{b-a} i x} \int_a^b f(X)e^{-\frac{2n\pi}{b-a} i X} \dd X )^2 \dd x
+        \]
+    \end{itemize}
+
+\end{document}
+
