@@ -1,0 +1,33 @@
+% !TEX program = xelatex
+\documentclass {ctexart}
+
+\usepackage {amsmath}
+\usepackage {physics}
+\usepackage {tikz}
+\usepackage {graphics}
+\usepackage {array}
+\usepackage {xcolor}
+\usepackage {amssymb}
+\usepackage {listing}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+\title {每日一题\\{\small 傅立叶变换-3}}
+
+\date{2023.1.1}
+
+\begin{document}
+    \maketitle {}
+
+    考虑无穷大正方形电阻网络\((0,0)\)与\((p,q)\)两点的等效电阻。
+    \begin{itemize}
+        \item 设出每个点的电压\(\phi(x,y)\), 并列出电压满足的方程。
+        \item 构造函数, 并利用上一问方程计算出该函数所满足的方程。
+                \begin{equation}
+                    P(x,y) = \sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty} \phi(m,n) e^{imx+iny}
+                \end{equation}
+        \item 解出函数, 并利用傅立叶变换计算出电阻。
+        \item 类似的, 将上述公式推导到三维情况。
+    \end{itemize}
+\end{document}
+
