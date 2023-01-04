@@ -1,0 +1,189 @@
+% !TEX program = xelatex
+\documentclass{ctexart}
+
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{graphics}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{listing}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+\newtheorem{definition}{definition}
+\newtheorem{theorem}{theorem}
+\newtheorem{exercise}{exercise}
+\newtheorem{example}{example}
+
+\title{每日一题\\{\small 线性代数-2}}
+
+\date{2023.1.4}
+
+\begin{document}
+    \maketitle {}
+
+    \begin{definition}
+        [矩阵转置]
+        \begin{equation}
+            A^T_{ij} = A_{ji}
+        \end{equation}
+    \end{definition}
+    如你所见, 矩阵转置就是把矩阵沿着\(45^\circ\)对角线翻转.
+    定义了矩阵转置以后, 如下性质读者自证不难.
+    \begin{exercise}
+        证明:
+        \begin{equation}
+            \begin{aligned}
+                A = {(A^T)}^T \\
+                {(A+B)}^T = A^T + B^T \\
+                {(AB)}^T = B^{T}A^{T}
+            \end{aligned}
+        \end{equation}
+    \end{exercise}
+    我们把昨天的线性变换全体转置得到.
+    \begin{equation}
+        \begin{bmatrix}
+            y_1 & y_2 & \cdots & y_n
+        \end{bmatrix} = \begin{bmatrix}
+            x_1 & x_2 & \cdots & x_m
+        \end{bmatrix} \begin{bmatrix}
+            a_{11} & a_{21} & \cdots & a_{n1} \\
+            a_{12} & a_{22} & \cdots & a_{n2} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{1m} & a_{2m} & \cdots & a_{nm}
+        \end{bmatrix}
+    \end{equation}
+
+    矩阵转置暂时用不到, 但我们先保留它的定义.
+
+    现在我们已经把线性变换用矩阵表示了, 得到 y 相对于 x 的关系, 但是我们还不知道 x 相对于 y 的关系.
+
+    \begin{definition}
+        [逆矩阵] 假定 \(A\) 是一个方阵(行数等于列数), 那么如果存在一个矩阵记作 \(A^{-1}\), 使得
+        \begin{equation}
+            A^{-1}A = I
+        \end{equation}
+        I 是单位矩阵, 也就是对角线上全是 1, 其他地方全是 0 的方阵, 有时也用 E 表示.
+        逆矩阵的唯一性和存在性将在学习行列式后讨论.
+    \end{definition}
+
+    带入之前的线性变换, 我们得到 (自行带入验证不难) 
+
+    \begin{equation}
+        \begin{bmatrix}
+            x_1 \\
+            x_2 \\
+            \vdots \\
+            x_n
+        \end{bmatrix} = A^{-1} \begin {bmatrix}
+            y_1 \\
+            y_2 \\
+            \vdots \\
+            y_n
+        \end{bmatrix}
+    \end{equation}
+
+    求逆矩阵最常见的方法就是高斯消元法, 俗称加加减减出奇迹.
+
+    \begin{example}
+        \begin{equation}
+            \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+            \end{bmatrix}
+        \end{equation}
+
+        也就是解方程组
+
+        \begin{equation}
+            \begin{aligned}
+                y_1 &= x_1 + 2x_2  \\
+                y_2 &= 3x_1 + 4x_2
+            \end{aligned}
+        \end{equation}
+
+        上面乘以三倍减去下面, 得到
+
+        \begin{equation}
+            \begin{aligned}
+                3y_1 - y_2 = 2x_2 \\
+                y_2 = 3x_1 + 4x_2
+            \end{aligned}
+        \end{equation}
+
+        下面乘以二分之一减去上面, 得到
+
+        \begin{equation}
+            \begin{aligned}
+                x_1 &= y_2 - 2y_1 \\
+                x_2 &= \frac{3y_1 - y_2}{2}
+            \end{aligned}
+        \end{equation}
+
+        从而, 我们有
+
+        \begin{equation}
+            \begin{bmatrix}
+                -2 & 1 \\
+                \frac{3}{2} & -\frac{1}{2}
+            \end{bmatrix} \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+            \end{bmatrix} = \begin{bmatrix}
+                1 & 0 \\
+                0 & 1
+            \end{bmatrix}
+        \end{equation}
+
+        我们来仔细观察上述结果, 写成矩阵的形式.
+        
+        \begin{equation}
+            \begin{bmatrix}
+                1 & 0 & 1 & 2 \\
+                0 & 1 & 3 & 4
+            \end{bmatrix}
+        \end{equation}
+
+        \begin{equation}
+            \begin{bmatrix}
+                3 & -1 & 0 & 2 \\
+                0 & 1 & 3 & 4
+            \end{bmatrix}
+        \end{equation}
+
+
+        \begin{equation}
+            \begin{bmatrix}
+                3 & -1 & 0 & 2 \\
+                -6 & 3 & 3 & 0
+            \end{bmatrix}
+        \end{equation}
+
+
+        \begin{equation}
+            \begin{bmatrix}
+                -2 & 1 & 1 & 0 \\
+                \frac{2}{3} &-\frac{1}{2} & 0 & 1
+            \end{bmatrix}
+        \end{equation}
+
+        就是通过一些行的加加减减得到逆矩阵.
+    \end{example}
+    
+    \begin{exercise}
+        计算任意二 (三) 阶方阵的逆矩阵, 并指出它们可逆的条件 (不等式左边就是行列式).
+    \end{exercise}
+
+    \begin{exercise}
+        证明如下性质:
+        \begin{equation}
+            {(AB)}^{-1} = B^{-1}A^{-1}
+        \end{equation}
+        \begin{equation}
+            {(A^T)}^{-1} = {(A^{-1})}^T
+        \end{equation}
+    \end{exercise}
+\end{document}
+
